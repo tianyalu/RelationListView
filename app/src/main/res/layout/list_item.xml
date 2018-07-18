@@ -1,97 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_white_selector"
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@drawable/bg_white_selector"
+        android:text="标题0" />
+
+    <com.sty.relation.listview.view.InterceptScrollLinearLayout
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_title0"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="标题0" />
-
-        <com.sty.relation.listview.view.InterceptScrollLinearLayout
-            android:id="@+id/scroll_container"
+        android:layout_height="40dp"
+        android:gravity="center_vertical">
+        <com.sty.relation.listview.view.CustomHScrollView
+            android:id="@+id/hsl_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
-            <com.sty.relation.listview.view.CustomHScrollView
-                android:id="@+id/hsl_header"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ll_item_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_white_selector"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_retail_amount"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_retail_amount_tip"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="销售额" />
+                    android:gravity="center"
+                    android:text="标题1"
+                    android:textColor="@android:color/holo_red_light"/>
 
 
-                    <TextView
-                        android:id="@+id/tv_profit_tip"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingRight="5dp"
-                        android:text="毛利额" />
+                <TextView
+                    android:id="@+id/tv_profit"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="标题2"
+                    android:textColor="@android:color/holo_green_light"/>
 
-                    <TextView
-                        android:id="@+id/tv_gross_profit_tip"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingRight="5dp"
-                        android:text="毛利率" />
+                <TextView
+                    android:id="@+id/tv_gross_profit"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="标题3" />
 
-                    <TextView
-                        android:id="@+id/tv_receive_hint"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingRight="5dp"
-                        android:text="期间入库" />
+                <TextView
+                    android:id="@+id/tv_receive"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="标题4" />
 
 
-                    <TextView
-                        android:id="@+id/tv_scrap_hint"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingRight="5dp"
-                        android:text="期间损耗" />
+                <TextView
+                    android:id="@+id/tv_scrap"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="标题5" />
 
-                    <TextView
-                        android:id="@+id/tv_profitless_hint"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingRight="5dp"
-                        android:text="盘点盈亏" />
+                <TextView
+                    android:id="@+id/tv_profitless"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="标题6" />
 
-                </LinearLayout>
-            </com.sty.relation.listview.view.CustomHScrollView>
-        </com.sty.relation.listview.view.InterceptScrollLinearLayout>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/lv_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="1dp"
-        android:divider="@color/gray"
-        android:fastScrollEnabled="false"/>
+            </LinearLayout>
+        </com.sty.relation.listview.view.CustomHScrollView>
+    </com.sty.relation.listview.view.InterceptScrollLinearLayout>
 </LinearLayout>

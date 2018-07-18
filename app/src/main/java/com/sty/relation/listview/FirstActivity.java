@@ -2,8 +2,10 @@ package com.sty.relation.listview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -12,12 +14,12 @@ import com.sty.relation.listview.adapter.CommonViewHolder;
 import com.sty.relation.listview.model.AnalyseEntity;
 import com.sty.relation.listview.utils.ViewUtils;
 import com.sty.relation.listview.view.CusHorizontalScrollView;
-import com.sty.relation.listview.view.RelationListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirstActivity extends AppCompatActivity {
+    private Toolbar toolbar;
     private ListView lvName;
     private ListView lvContent;
     private CusHorizontalScrollView hslHeader;
@@ -30,17 +32,18 @@ public class FirstActivity extends AppCompatActivity {
 
     private List<AnalyseEntity> createDataList(){
         List<AnalyseEntity> dataList = new ArrayList<>();
-        AnalyseEntity entity = new AnalyseEntity();
         String str = "";
-        for(int i = 1000; i < 1060; i++){
-            str = i + "";
-            entity.setName(str);
-            entity.setGrossProfit(str);
-            entity.setProfit(str);
-            entity.setProfitless(str);
-            entity.setReceive(str);
-            entity.setScrap(str);
-            entity.setRetailAmount(str);
+        for(int i = 1; i <= 100; i++){
+            str = "第" + i + "行";
+            AnalyseEntity entity = new AnalyseEntity();
+            entity.setName(str + "-0");
+            entity.setRetailAmount(str + "-1");
+            entity.setProfit(str + "-2");
+            entity.setGrossProfit(str + "-3");
+            entity.setReceive(str + "-4");
+            entity.setScrap(str + "-5");
+            entity.setProfitless(str + "-6");
+
             dataList.add(entity);
         }
         return dataList;
@@ -51,7 +54,19 @@ public class FirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
+        setActionBar();
         initView();
+        setListView();
+    }
+
+    private void setActionBar(){
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void setListView(){
+        dataList = createDataList();
+
         setLvName();
         setLvContent();
     }
@@ -61,8 +76,6 @@ public class FirstActivity extends AppCompatActivity {
         lvContent = findViewById(R.id.lv_content);
         hslHeader = findViewById(R.id.hsl_header);
         hslContent = findViewById(R.id.hsl_content);
-
-        dataList = createDataList();
 
         lvName.setTag(lvContent);
         lvContent.setTag(lvName);
@@ -77,7 +90,6 @@ public class FirstActivity extends AppCompatActivity {
             nameAdapter = new CommonAdapter<AnalyseEntity>(this, dataList, R.layout.item_name) {
                 @Override
                 public void convert(final CommonViewHolder holder, AnalyseEntity analyseEntity) {
-                    holder.setText(R.id.tv_position, (holder.getPosition() + 1) + ".");
                     holder.setText(R.id.tv_product_name, analyseEntity.getName());
                     holder.getConvertView().setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -120,4 +132,21 @@ public class FirstActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                setListView();  //刷新，重新加载数据
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

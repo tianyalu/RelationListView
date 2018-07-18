@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
+    android:paddingTop="0dp"
     android:paddingBottom="16dp"
     android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
-        <View
+        <TextView
+            android:id="@+id/tv_product_name"
             android:layout_width="100dp"
-            android:layout_height="5dp"/>
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="标题0" />
 
         <com.sty.relation.listview.view.CusHorizontalScrollView
             android:id="@+id/hsl_header"
@@ -31,7 +46,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="销售额" />
+                    android:text="标题1" />
 
 
                 <TextView
@@ -40,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingRight="5dp"
-                    android:text="毛利额" />
+                    android:text="标题2" />
 
                 <TextView
                     android:id="@+id/tv_gross_profit_tip"
@@ -48,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingRight="5dp"
-                    android:text="毛利率" />
+                    android:text="标题3" />
 
                 <TextView
                     android:id="@+id/tv_receive_hint"
@@ -56,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingRight="5dp"
-                    android:text="期间入库" />
+                    android:text="标题4" />
 
 
                 <TextView
@@ -65,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingRight="5dp"
-                    android:text="期间损耗" />
+                    android:text="标题5" />
 
                 <TextView
                     android:id="@+id/tv_profitless_hint"
@@ -73,13 +88,18 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingRight="5dp"
-                    android:text="盘点盈亏" />
+                    android:text="标题6" />
 
             </LinearLayout>
 
 
         </com.sty.relation.listview.view.CusHorizontalScrollView>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,7 +114,8 @@
         <com.sty.relation.listview.view.CusHorizontalScrollView
             android:id="@+id/hsl_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
             <ListView
                 android:id="@+id/lv_content"
                 android:layout_width="wrap_content"

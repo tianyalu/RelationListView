@@ -2,41 +2,108 @@ package com.sty.relation.listview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
-import com.sty.relation.listview.view.RelationListView;
+import com.sty.relation.listview.adapter.ListViewAdapter;
+import com.sty.relation.listview.model.AnalyseEntity;
+import com.sty.relation.listview.view.CustomHScrollView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SecondActivity extends AppCompatActivity {
-    private RelationListView mListView1;
-    private RelationListView mListView2;
+    private Toolbar toolbar;
+    private ListView mListView;
+    private LinearLayout listViewHeader;
+    private CustomHScrollView mHScrollView;
 
-    private String[] mData1 = new String[]{"listView1", "listView1",
-            "listView1", "listView1", "listView1", "listView1", "listView1",
-            "listView1", "listView1", "listView1", "listView1", "listView1",
-            "listView1", "listView1", "listView1", "listView1", "listView1",
-            "listView1", "listView1", "listView1", "listView1", "listView1",
-            "listView1", "listView1"};
-    private String[] mData2 = new String[]{"ListView2", "ListView2",
-            "ListView2", "ListView2", "ListView2", "ListView2", "ListView2",
-            "ListView2", "ListView2", "ListView2", "ListView2", "ListView2",
-            "ListView2", "ListView2", "ListView2", "ListView2", "ListView2",
-            "ListView2", "ListView2", "ListView2", "ListView2", "ListView2",
-            "ListView2", "ListView2"};
+    private List<AnalyseEntity> dataList;
+    private ListViewAdapter adapter;
+
+    private List<AnalyseEntity> createDataList() {
+        List<AnalyseEntity> dataList = new ArrayList<>();
+        String str = "";
+        for (int i = 1; i <= 100; i++) {
+            str = "第" + i + "行";
+            AnalyseEntity entity = new AnalyseEntity();
+            entity.setName(str + "-0");
+            entity.setRetailAmount(str + "-1");
+            entity.setProfit(str + "-2");
+            entity.setGrossProfit(str + "-3");
+            entity.setReceive(str + "-4");
+            entity.setScrap(str + "-5");
+            entity.setProfitless(str + "-6");
+
+            dataList.add(entity);
+        }
+        return dataList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        mListView1 = (RelationListView) findViewById(R.id.list_view1);
-        mListView2 = (RelationListView) findViewById(R.id.list_view2);
-
-        mListView1.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, mData1));
-        mListView2.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, mData2));
-        mListView1.setRelatedListView(mListView2);
-        mListView2.setRelatedListView(mListView1);
+        setActionBar();
+        initView();
     }
 
+    private void setActionBar(){
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void initView() {
+        mListView = findViewById(R.id.lv_list_view);
+        listViewHeader = findViewById(R.id.head_layout);
+
+        mListView.setOnTouchListener(new MyTouchListener());
+        listViewHeader.setFocusable(true);
+        listViewHeader.setClickable(true);
+        listViewHeader.setOnTouchListener(new MyTouchListener());
+
+        setListView();
+    }
+
+    private void setListView(){
+        dataList = createDataList();
+        adapter = new ListViewAdapter(this, dataList, listViewHeader);
+        mListView.setAdapter(adapter);
+    }
+
+    class MyTouchListener implements View.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            //当在表头和listView控件上touch时，将事件分发给ScrollView
+            HorizontalScrollView headScrollView = listViewHeader.findViewById(R.id.hsl_scrollview);
+            headScrollView.onTouchEvent(motionEvent);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                setListView();  //刷新，重新加载数据
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -20,6 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="第二种联动ListView"
+        android:text="第二种联动ListView(推荐使用)"
         android:textAllCaps="false"/>
 </LinearLayout>
