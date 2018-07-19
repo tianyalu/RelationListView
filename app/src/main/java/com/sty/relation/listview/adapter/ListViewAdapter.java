@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sty.relation.listview.MainActivity;
 import com.sty.relation.listview.R;
 import com.sty.relation.listview.model.AnalyseEntity;
 import com.sty.relation.listview.view.CustomHScrollView;

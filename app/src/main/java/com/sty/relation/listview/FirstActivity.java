@@ -69,6 +69,8 @@ public class FirstActivity extends AppCompatActivity {
 
         setLvName();
         setLvContent();
+        lvName.setSelection(0);
+        lvContent.setSelection(0);
     }
 
     private void initView(){
