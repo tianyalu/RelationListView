@@ -64,14 +64,14 @@ public class InterceptScrollLinearLayout extends LinearLayout {
                     boolean yMoved = yDiff > mTouchSlop;
 
                     if(xMoved){
-                        if(xDiff >= yDiff){ //Scroll if the user moved far enough along the X axis
+                        if(xDiff >= yDiff && xDiff >= mTouchSlop){ //Scroll if the user moved far enough along the X axis
                             mTouchState = TOUCH_STATE_HORIZONTAL_SCROLLING;
                             mLastMotionX = x;
                         }
                     }
 
                     if(yMoved){
-                        if(yDiff > xDiff){ //Scroll if the user moved far enough along the Y axis
+                        if(yDiff > xDiff && yDiff >= mTouchSlop){ //Scroll if the user moved far enough along the Y axis
                             mTouchState = TOUCH_STATE_VERTICAL_SCROLLING;
                             mLastMotionY = y;
                         }

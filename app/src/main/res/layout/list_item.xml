@@ -23,7 +23,8 @@
             android:id="@+id/hsl_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:id="@+id/ll_item_list"

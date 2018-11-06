@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.sty.relation.listview.adapter.ListViewAdapter;
 import com.sty.relation.listview.model.AnalyseEntity;
-import com.sty.relation.listview.view.CustomHScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ public class SecondActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView mListView;
     private LinearLayout listViewHeader;
-    private CustomHScrollView mHScrollView;
 
     private List<AnalyseEntity> dataList;
     private ListViewAdapter adapter;

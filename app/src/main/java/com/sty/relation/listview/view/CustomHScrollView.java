@@ -3,6 +3,7 @@ package com.sty.relation.listview.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ public class CustomHScrollView extends HorizontalScrollView {
         }
         super.onScrollChanged(l, t, oldl, oldt);
     }
-
 
     /**
      * 自定义的滚动监听接口
