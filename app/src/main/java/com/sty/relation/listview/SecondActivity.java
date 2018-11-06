@@ -62,10 +62,8 @@ public class SecondActivity extends AppCompatActivity {
         mListView = findViewById(R.id.lv_list_view);
         listViewHeader = findViewById(R.id.head_layout);
 
-        mListView.setOnTouchListener(new MyTouchListener());
         listViewHeader.setFocusable(true);
         listViewHeader.setClickable(true);
-        listViewHeader.setOnTouchListener(new MyTouchListener());
 
         setListView();
     }
@@ -76,16 +74,6 @@ public class SecondActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
     }
 
-    class MyTouchListener implements View.OnTouchListener {
-
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            //当在表头和listView控件上touch时，将事件分发给ScrollView
-            HorizontalScrollView headScrollView = listViewHeader.findViewById(R.id.hsl_scrollview);
-            headScrollView.onTouchEvent(motionEvent);
-            return false;
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
